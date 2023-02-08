@@ -19,13 +19,14 @@ QUESTIONS = {
         "To get information from the user",
     ],
   "What's the name of Python's sorting algorithm": [
-        "Timsort", "Quicksort", "Merge sort", "Bubble sort"
+        "Timesort", "Quicksort", "Merge sort", "Bubble sort"
     ],
   "What does dict.get(key) return if key isn't found in dict": [
         "None", "key", "True", "False",
     ]
 }
 
+num_correct = 0
 for num, (question, alternatives) in enumerate(QUESTIONS.items(), start=1):
     print(f"\nQuestion {num}:")
     print(f"{question}?")
@@ -37,6 +38,9 @@ for num, (question, alternatives) in enumerate(QUESTIONS.items(), start=1):
     answer_label = input(f"\nChoice? ")
     answer = labeled_alternatives.get(answer_label)
     if answer == correct_answer:
+        num_correct += 1
         print("⭐ Correct! ⭐")
     else:
       print(f"The answer is {correct_answer!r}, not {answer!r}")
+
+print(f"\nYou got {num_correct} correct out of {num} questions")
