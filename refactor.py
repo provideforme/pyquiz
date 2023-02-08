@@ -67,9 +67,24 @@ def ask_question(question, alternatives):
 
     answer = get_answer(question, ordered_alternatives)
     if answer == correct_answer:
-      print("⭐ Correct! ⭐")
-      return 1
+        print("⭐ Correct! ⭐")
+        return 1
 
     else:
         print(f"The answer is {correct_answer!r}, not {answer!r}")
         return 0
+
+def run_quiz():
+    questions = prepare_questions(
+      QUESTIONS, num_questions=NUM_QUESTIONS_PER_QUIZ
+    )
+
+    num_correct = 0
+    for num, (question, alternatives) in enumerate(questions, start=1):
+        print(f"\nQuestion {num}:")
+        num_correct += ask_question(question, alternatives)
+
+    print(f"\nYou got {num_correct} correct out of {num} questions")
+
+    if __name__ == "__main__":
+        run_quiz()
