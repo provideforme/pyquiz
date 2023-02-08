@@ -23,7 +23,13 @@ QUESTIONS = {
     ],
   "What does dict.get(key) return if key isn't found in dict": [
         "None", "key", "True", "False",
-    ]
+    ],
+  "What's the official name of the := operator": [
+        "Assignment expression",
+        "Named expression",
+        "Walrus operator",
+        "Colon equals operator",
+    ],
 }
 
 num_correct = 0
@@ -35,8 +41,10 @@ for num, (question, alternatives) in enumerate(QUESTIONS.items(), start=1):
     for label, alternative in labeled_alternatives.items():
         print(f"  {label}) {alternative}")
 
-    answer_label = input(f"\nChoice? ")
-    answer = labeled_alternatives.get(answer_label)
+    while (answer_label := input(f"\nChoice? ")) not in labeled_alternatives:
+        print(f"Please answer one of {', '.join(labeled_alternatives)}")
+
+    answer = labeled_alternatives[answer_label]
     if answer == correct_answer:
         num_correct += 1
         print("⭐ Correct! ⭐")
